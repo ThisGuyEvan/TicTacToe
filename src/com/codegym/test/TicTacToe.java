@@ -23,7 +23,7 @@ public class TicTacToe
             }
         }
     }
-    
+
     //this method returns the current turn
     public int getTurn()
     {
@@ -34,9 +34,9 @@ public class TicTacToe
      */
     public void printBoard()
     {
-        for (int i = 0; i < board.length; i++){
-            for (int k = 0; k < board[0].length; k++){
-                System.out.print(board[i][k]);
+        for (String[] strings : board) {
+            for (int k = 0; k < board[0].length; k++) {
+                System.out.print(strings[k]);
             }
             System.out.println();
         }
@@ -45,10 +45,7 @@ public class TicTacToe
     //This method returns true if space row, col is a valid space
     public boolean pickLocation(int row, int col)
     {
-        if (board[row+1][col+1] == "- "){
-            return true;
-        }
-        return false;
+        return board[row + 1][col + 1].equals("- ");
     }
 
     //This method places an X or O at location row,col based on the int turn
@@ -66,9 +63,9 @@ public class TicTacToe
     //This method returns a boolean that returns true if a row has three X or O's in a row
     public boolean checkRow()
     {
-        for (int i = 0; i < board.length; i++){
-            if (board[i][1].equals(board[i][2]) && board[i][2].equals(board[i][3])){
-                if (!(board[i][2].equals("- "))){
+        for (String[] strings : board) {
+            if (strings[1].equals(strings[2]) && strings[2].equals(strings[3])) {
+                if (!(strings[2].equals("- "))) {
                     return true;
                 }
             }
@@ -107,11 +104,7 @@ public class TicTacToe
     //This method returns a boolean that checks if someone has won the game
     public boolean checkWin()
     {
-        if (checkDiag() || checkCol() || checkRow()){
-            return false;
-        }
-
-        return true;
+        return !checkDiag() && !checkCol() && !checkRow();
     }
 
     public boolean checkMaxed(){
